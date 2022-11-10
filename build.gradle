@@ -1,0 +1,54 @@
+plugins {
+	id 'org.springframework.boot' version '2.7.5'
+	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+	id 'java'
+	id 'idea'
+}
+
+group = 'com.bankaccount'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.axonframework:axon-spring-boot-starter:4.6.1'
+	implementation 'org.springframework.boot:spring-boot-starter-actuator:2.7.5'
+	implementation 'io.springfox:springfox-swagger2:2.9.2'
+	implementation 'io.springfox:springfox-swagger-ui:2.9.2'
+	implementation 'org.axonframework:axon-server-connector:4.6.1'
+	implementation 'com.axonivy.ivy.ci:project-build-plugin:10.0.1'
+	implementation 'com.jayway.jsonpath:json-path:2.7.0'
+	compileOnly 'org.projectlombok:lombok'
+	runtimeOnly 'com.h2database:h2'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.axonframework:axon-test:4.6.1'
+	testImplementation 'junit:junit:4.13.2'
+	testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.9.1'
+	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.1'
+/*
+	testImplementation 'org.hamcrest:hamcrest:2.2'
+*/
+	testImplementation 'io.rest-assured:rest-assured:3.3.0'
+
+}
+
+configurations {
+	all*.exclude module : 'spring-boot-starter-logging'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
